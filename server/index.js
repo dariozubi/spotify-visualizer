@@ -78,7 +78,7 @@ app.get('/callback', (req, res) => {
     if (!error && res.statusCode === 200) {
       res.cookie(process.env.access_token, body.access_token);
       res.cookie(process.env.refresh_token, body.refresh_token);
-      res.cookie(process.env.refresh_code, code);
+      // res.cookie(process.env.refresh_code, code);
 
       res.redirect('http://localhost:8000/#start');
     } else {
