@@ -8,8 +8,7 @@ import * as Mycookie from './cookie';
 
 	this.state = {
 	  headers: {},
-    refresh_token: '',
-    // refresh_code: '',
+    refresh_token: ''
 	}
 
 	this.setMainState = this.setMainState.bind(this);
@@ -21,7 +20,6 @@ import * as Mycookie from './cookie';
 
       this.setState({
         refresh_token: Mycookie.get('DAZOPTICA_REFRESH_TOKEN'),
-        // refresh_code: Mycookie.get('DAZOPTICA_REFRESH_CODE'),
         headers: new Headers({
           'Authorization': 'Bearer ' + Mycookie.get('DAZOPTICA_ACCESS_TOKEN'),
           'Accept': 'application/json'
@@ -66,7 +64,8 @@ import * as Mycookie from './cookie';
 
         if (res.statusText === "No Content"){
           this.setMainState({ 
-            active: false 
+            active: false,
+            track: "NO TRACK"
           });
           return "";
         }

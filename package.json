@@ -1,12 +1,13 @@
 {
   "name": "spotify-visualizer",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "dependencies": {
     "cookie-parser": "^1.4.4",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.1",
+    "react-three-fiber": "^3.0.11",
     "three": "^0.105.2"
   },
   "scripts": {
