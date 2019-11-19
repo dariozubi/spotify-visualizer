@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import SpotifyApiHandler from './components/SpotifyApiHandler';
-import CubesScene from './components/CubesScene';
-import { Canvas } from 'react-three-fiber';
+import SpotifyApiHandler from './components/util/SpotifyApiHandler';
+import DodecahedronScene from './components/scenes/dodecahedron/DodecahedronScene';
 import './App.css';
 
 export default class App extends Component{
@@ -34,19 +33,20 @@ export default class App extends Component{
 
     return(
       <div className="main">
-        <Canvas>
-          <CubesScene
-            active={active}
-            track_analysis={track_analysis}
-            track_progress={track_progress}
-            last_update={last_update}
-            setMainState={this.setMainState} />
-        </Canvas>
+
+        <DodecahedronScene
+          active={active}
+          track_analysis={track_analysis}
+          track_progress={track_progress}
+          last_update={last_update}
+          setMainState={this.setMainState} />
+
         <SpotifyApiHandler
           active={active}
           track={track}
           track_progress={track_progress}
           setMainState={this.setMainState} />
+
       </div>
     );
   }

@@ -4,14 +4,14 @@ import * as Mycookie from './cookie';
  export default class SpotifyApiHandler extends Component{
 
   constructor(props){
-	super(props);
+  	super(props);
 
-	this.state = {
-	  headers: {},
-    refresh_token: ''
-	}
+  	this.state = {
+  	  headers: {},
+      refresh_token: ''
+  	}
 
-	this.setMainState = this.setMainState.bind(this);
+  	this.setMainState = this.setMainState.bind(this);
   }
 
   componentDidMount() {
