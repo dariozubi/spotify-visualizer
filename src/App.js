@@ -8,45 +8,39 @@ export default class App extends Component{
   constructor(props){
     super(props);
 
-    this.setMainState = this.setMainState.bind(this);
+    this.setActive = this.setActive.bind(this);
+    this.setTrack = this.setTrack.bind(this);
 
     this.state = {
-      track: {},
-      track_analysis: {},
-      track_progress: 0,
-      last_update: 0,
-      active: false
+      active: false,
+      track: {}
     };
   }
 
-  setMainState(state){
-    this.setState(state);
+  setActive(active){
+    this.setState({ active: active });
+  }
+
+  setTrack(track){
+    this.setState({ track: track })
   }
 
   render() {
 
     const track = this.state.track;
-    const track_analysis = this.state.track_analysis;
-    const track_progress = this.state.track_progress;
     const active = this.state.active;
-    const last_update = this.state.last_update;
 
     return(
       <div className="main">
 
         <DodecahedronScene
           active={active}
-          track_analysis={track_analysis}
-          track_progress={track_progress}
-          last_update={last_update}
-          setMainState={this.setMainState} />
+          track={track} />
 
         <SpotifyApiHandler
           active={active}
-          track={track}
-          track_progress={track_progress}
-          setMainState={this.setMainState} />
-
+          setActive={this.setActive}
+          setTrack={this.setTrack} />
       </div>
     );
   }
