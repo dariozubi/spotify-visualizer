@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SpotifyApiHandler from './components/util/SpotifyApiHandler';
 import DodecahedronScene from './components/scenes/dodecahedron/DodecahedronScene';
+// import FirefliesScene from './components/scenes/fireflies/FirefliesScene';
 import './App.css';
 
 export default class App extends Component{

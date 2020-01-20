@@ -26,9 +26,9 @@ import * as cookie from './cookie';
     if (window.location.hash === '#start') {
 
       this.setState({
-        refresh_token: cookie.get('DAZOPTICA_REFRESH_TOKEN'),
+        refresh_token: cookie.get('DAZUMA_REFRESH_TOKEN'),
         headers: new Headers({
-          'Authorization': 'Bearer ' + cookie.get('DAZOPTICA_ACCESS_TOKEN'),
+          'Authorization': 'Bearer ' + cookie.get('DAZUMA_ACCESS_TOKEN'),
           'Accept': 'application/json'
         })
       });
