@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import * as cookie from './cookie';
 
- export default class SpotifyApiHandler extends Component{
+ export default class APIHandler extends Component{
 
   constructor(props){
   	super(props);
@@ -52,7 +52,7 @@ import * as cookie from './cookie';
   auth () {
     fetch('http://localhost:8001/auth')
       .then(res => res.json())
-      .then(res => res.auth_id ? window.location.href = `http://localhost:8001/login?auth_id=${res.auth_id}` : null) 
+      .then(res => res.auth_id ? window.location.href = 'http://localhost:8001/login?auth_id='+ res.auth_id : null) 
       .catch(err => console.log(err))
   }
 
@@ -170,7 +170,6 @@ import * as cookie from './cookie';
         const song_in_sync = JSON.stringify(this.state.track) === JSON.stringify(track)
 
         const error = this.state.track_progress - progress;
-        // console.info(error);
 
         if (playing && !this.props.active) {
 

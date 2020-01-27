@@ -90,7 +90,7 @@ app.get('/callback', (req, res) => {
 app.get('/auth', (req, res) => {
   const auth_id = Math.random().toString(36).slice(5, 11)
   res.set('Content-Type', 'application/json');
-  res.send(JSON.stringify({ auth_id: `${Math.random().toString(36).slice(5, 11)}` }));
+  res.send(JSON.stringify({ auth_id: Math.random().toString(36).slice(5, 11) }));
 });
 
 app.listen(8001, () =>

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Canvas, useThree, useFrame } from "react-three-fiber"
-import { useDrag } from "react-use-gesture"
 import { useSpring, a } from "react-spring/three"
 
 function Tempo(props) {
@@ -12,16 +11,11 @@ function Tempo(props) {
     rotation: [0, 0, 0],
     config: { mass: 5, friction: 50, tension: 100 }
   }))
-  const bindDrag = useDrag(
-    ({ offset: [x, y], vxvy: [vx, vy], down, ...props }) =>
-      set({ position: [x / aspect, -y / aspect, 0], rotation: [y / aspect, x / aspect, 0] }),
-    { pointerEvents: true }
-  )
 
   useFrame(() => set({ scale: props.track.tempo_pulse ? [0.9, 0.9, 0.9] : [0.7, 0.7, 0.7] }));
 
   return (
-    <a.mesh {...spring} {...bindDrag()} castShadow>
+    <a.mesh {...spring} castShadow>
       <dodecahedronBufferGeometry attach="geometry" args={[1.4, 0]} />
       <meshNormalMaterial attach="material" />
     </a.mesh>

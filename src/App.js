@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import SpotifyApiHandler from './components/util/SpotifyApiHandler';
-import DodecahedronScene from './components/scenes/dodecahedron/DodecahedronScene';
-// import FirefliesScene from './components/scenes/fireflies/FirefliesScene';
+import APIHandler from './components/APIHandler';
+import Scene from './components/Scene';
 import './App.css';
 
 export default class App extends Component{
@@ -34,11 +33,11 @@ export default class App extends Component{
     return(
       <div className="main">
 
-        <DodecahedronScene
+        <Scene
           active={active}
           track={track} />
 
-        <SpotifyApiHandler
+        <APIHandler
           active={active}
           setActive={this.setActive}
           setTrack={this.setTrack} />
