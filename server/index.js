@@ -26,9 +26,11 @@ app.get('/refresh', (req, res) => {
 
   const authOptions = {
     url: 'https://accounts.spotify.com/api/token',
-    headers: { 'Authorization': 'Basic ' + (new Buffer(process.env.client_id + ':' + process.env.client_secret).toString('base64')) },
+    headers: { 
+      'Authorization': 'Basic ' + (Buffer.from(process.env.client_id + ':' + process.env.client_secret).toString('base64'))
+    },
     form: {
-      refresh_token,
+      refresh_token: refresh_token,
       grant_type: 'refresh_token'
     },
     json: true
@@ -36,8 +38,9 @@ app.get('/refresh', (req, res) => {
 
   request.post(authOptions, (error, response, body) => {
     if (!error && response.statusCode === 200) {
-      const access_token = body.access_token
-      res.send({ access_token });
+      res.cookie(process.env.access_token, body.access_token);
+      res.cookie(process.env.refresh_token, body.refresh_token);
+      res.redirect('http://localhost:8000/#start');
     } else {
       res.send({ message: 'The end is near'});
     };
@@ -54,12 +57,12 @@ app.get('/login', (req, res) => {
     state: auth_id
   });
 
-  res.cookie(process.env.state_key, auth_id);
   res.redirect('https://accounts.spotify.com/authorize?' + query);
 });
 
 app.get('/callback', (req, res) => {
   const code = req.query.code || null;
+  // TODO: add error handling based on req.query.error
   
   const authOptions = {
     url: 'https://accounts.spotify.com/api/token',
@@ -69,7 +72,7 @@ app.get('/callback', (req, res) => {
       grant_type: 'authorization_code'
     },
     headers: {
-      'Authorization': 'Basic ' + (new Buffer(process.env.client_id + ':' + process.env.client_secret).toString('base64'))
+      'Authorization': 'Basic ' + (Buffer.from(process.env.client_id + ':' + process.env.client_secret).toString('base64'))
     },
     json: true
   };
@@ -78,8 +81,6 @@ app.get('/callback', (req, res) => {
     if (!error && res.statusCode === 200) {
       res.cookie(process.env.access_token, body.access_token);
       res.cookie(process.env.refresh_token, body.refresh_token);
-      // res.cookie(process.env.refresh_code, code);
-
       res.redirect('http://localhost:8000/#start');
     } else {
       res.redirect('/#' + querystring.stringify({ error: 'invalid_token' }));

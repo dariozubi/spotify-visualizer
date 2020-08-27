@@ -1,47 +1,17 @@
-import React, { Component } from 'react';
-import APIHandler from './components/APIHandler';
-import Scene from './components/Scene';
-import './App.css';
+import React from 'react';
+import useTrack from './util/hooks/useTrack';
+import Dashboard from './components/Dashboard';
 
-export default class App extends Component{
+export default function App(){
+  
+  const track = useTrack();
 
-  constructor(props){
-    super(props);
-
-    this.setActive = this.setActive.bind(this);
-    this.setTrack = this.setTrack.bind(this);
-
-    this.state = {
-      active: false,
-      track: {}
-    };
-  }
-
-  setActive(active){
-    this.setState({ active: active });
-  }
-
-  setTrack(track){
-    this.setState({ track: track })
-  }
-
-  render() {
-
-    const track = this.state.track;
-    const active = this.state.active;
-
-    return(
-      <div className="main">
-
-        <Scene
-          active={active}
-          track={track} />
-
-        <APIHandler
-          active={active}
-          setActive={this.setActive}
-          setTrack={this.setTrack} />
-      </div>
-    );
-  }
+	return(
+    <React.Fragment>
+      {track && 
+        <Dashboard track={track}/>
+      }
+    </React.Fragment>
+	)
 }
+
