@@ -1,7 +1,8 @@
 import React, { Suspense } from 'react';
 import { Text, MeshWobbleMaterial, useTextureLoader, Plane } from "drei";
 import * as THREE from 'three';
-
+import { useStore } from 'util/hooks/useStore';
+import { toMinutes } from 'util/common';
 
 function Image({ img }) {
   const texture = useTextureLoader(img)
@@ -12,9 +13,13 @@ function Image({ img }) {
   )
 }
 
-const Info = ({ track }) => {
+const Info = () => {
+  const track = useStore(state => state.track);
+  const progress = useStore(state => state.progress);
+
   return(
     <React.Fragment>
+      {track &&     
       <Suspense fallback={null}>
         <Image 
           img={track.album.images[0].url}
@@ -27,7 +32,7 @@ const Info = ({ track }) => {
           anchorX='left'
           anchorY='top'
           position={[-3.5, 2.3, 0]}>
-          {track.artist}
+          {track.artists[0].name}
         </Text>
         <Text
           font="https://fonts.gstatic.com/s/merriweather/v21/u-4l0qyriQwlOrhSvowK_l5-eR7NWMf8.woff"
@@ -54,9 +59,9 @@ const Info = ({ track }) => {
           anchorY='top'
           color='#111111'
           position={[-3.5, 1.5, 0]}>
-          {track.time}
+          {toMinutes(progress)}
         </Text>
-      </Suspense>
+      </Suspense>}
     </React.Fragment>
   )
 }

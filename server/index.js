@@ -40,7 +40,7 @@ app.get('/refresh', (req, res) => {
     if (!error && response.statusCode === 200) {
       res.cookie(process.env.access_token, body.access_token);
       res.cookie(process.env.refresh_token, body.refresh_token);
-      res.redirect('http://localhost:8000/#start');
+      res.redirect('http://localhost:8000/');
     } else {
       res.send({ message: 'The end is near'});
     };
@@ -81,7 +81,7 @@ app.get('/callback', (req, res) => {
     if (!error && res.statusCode === 200) {
       res.cookie(process.env.access_token, body.access_token);
       res.cookie(process.env.refresh_token, body.refresh_token);
-      res.redirect('http://localhost:8000/#start');
+      res.redirect('http://localhost:8000/');
     } else {
       res.redirect('/#' + querystring.stringify({ error: 'invalid_token' }));
     }

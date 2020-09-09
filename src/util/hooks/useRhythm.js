@@ -1,20 +1,26 @@
 import { useEffect, useState } from 'react';
+import { useStore } from 'util/hooks/useStore';
 
-export default function useRhythm( track, rhythm ){
+export default function useRhythm( rhythm ){
   const [confidence, setConfidence] = useState(0);
-  
+  const [start, setStart] = useState(0);
+  const analysis = useStore(state => state.analysis);
+  const progress = useStore(state => state.progress);
+
   useEffect(() => {
-    if (track){
-      const data = track ? track.analysis[rhythm] : null;
-      const progress = track ? track.progress : null;
+    if (analysis){
+      const data = analysis[rhythm];
       for (let i=data.length-2; i>=0; --i){
         if (data[i].start < progress){
-          setConfidence(data[i+1].confidence);
+          if (data[i+1].start !== start){
+            setConfidence(data[i+1].confidence);
+            setStart(data[i+1].start);
+          }
           break
         }
       }
     }
-  }, [track, rhythm])
+  }, [analysis, rhythm, progress])
 
   return confidence;
 }

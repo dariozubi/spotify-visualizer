@@ -1,16 +1,14 @@
 import React from 'react';
-import useTrack from './util/hooks/useTrack';
-import Dashboard from './components/Dashboard';
+import useSpotify from 'util/hooks/useSpotify';
+import Dashboard from 'components/Dashboard'
 
 export default function App(){
-  
-  const track = useTrack();
+
+  useSpotify();
 
 	return(
     <React.Fragment>
-      {track && 
-        <Dashboard track={track}/>
-      }
+      <Dashboard />
     </React.Fragment>
 	)
 }
