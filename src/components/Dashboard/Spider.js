@@ -19,7 +19,6 @@ const Label = ({ text, x, y, rot }) => {
 
 const sin45 = Math.sin(Math.PI/4);
 const cos45 = Math.cos(Math.PI/4);
-// const points = [[0,,0], [0.5*sin45, 0.5*cos45, 0]]
 
 const Spider = () => {
   const [points, setPoints] = useState([[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0]])
@@ -43,28 +42,27 @@ const Spider = () => {
 
   return (
     <React.Fragment>
-      <Circle args={[1, 8]} position-x={3} position-y={-0.2}>
+      <Circle args={[1, 8]} position-x={3} position-y={-0.4}>
         <meshBasicMaterial attach="material" wireframe/>
       </Circle>
-      <Circle args={[0.75, 8]} position-x={3} position-y={-0.2}>
+      <Circle args={[0.75, 8]} position-x={3} position-y={-0.4}>
         <meshBasicMaterial attach="material" wireframe/>
       </Circle>
-      <Circle args={[0.5, 8]} position-x={3} position-y={-0.2}>
+      <Circle args={[0.5, 8]} position-x={3} position-y={-0.4}>
         <meshBasicMaterial attach="material" wireframe/>
       </Circle>
-      <Circle args={[0.25, 8]} position-x={3} position-y={-0.2}>
+      <Circle args={[0.25, 8]} position-x={3} position-y={-0.4}>
         <meshBasicMaterial attach="material" wireframe/>
       </Circle>
-      <Line color="red" position={[3, -0.2, 0]} points={points}  linewidth={1}/>
-      <Label text="Acousticness" x={3} y={0.85} rot={0}/>
-      <Label text="Danceability" x={3.75} y={0.55} rot={-Math.PI/4}/>
-      <Label text="Energy" x={4.05} y={-0.2} rot={-Math.PI/2}/>
-      <Label text="Instrumentalness" x={3.75} y={-0.95} rot={Math.PI/4}/>
-      <Label text="Liveness" x={3} y={-1.25} rot={0}/>
-      <Label text="Loudness" x={2.25} y={-0.95} rot={-Math.PI/4}/>
-      <Label text="Speechiness" x={1.95} y={-0.2} rot={Math.PI/2}/>
-      <Label text="Valence" x={2.25} y={0.55}  rot={Math.PI/4}/>
-      
+      <Line color="#005b96" position={[3, -0.4, 0]} points={points}  linewidth={1}/>
+      <Label text="Acousticness" x={3} y={0.65} rot={0}/>
+      <Label text="Danceability" x={3.75} y={0.35} rot={-Math.PI/4}/>
+      <Label text="Energy" x={4.05} y={-0.4} rot={-Math.PI/2}/>
+      <Label text="Instrumentalness" x={3.75} y={-1.15} rot={Math.PI/4}/>
+      <Label text="Liveness" x={3} y={-1.45} rot={0}/>
+      <Label text="Loudness" x={2.25} y={-1.15} rot={-Math.PI/4}/>
+      <Label text="Speechiness" x={1.95} y={-0.4} rot={Math.PI/2}/>
+      <Label text="Valence" x={2.25} y={0.35}  rot={Math.PI/4}/>
     </React.Fragment>
   )
 }
