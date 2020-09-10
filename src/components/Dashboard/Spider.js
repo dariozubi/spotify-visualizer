@@ -56,11 +56,11 @@ const Spider = () => {
         <meshBasicMaterial attach="material" wireframe/>
       </Circle>
       <Line color="red" position={[3, -0.2, 0]} points={points}  linewidth={1}/>
-      <Label text="Acousticness" x={3} y={0.9} rot={0}/>
+      <Label text="Acousticness" x={3} y={0.85} rot={0}/>
       <Label text="Danceability" x={3.75} y={0.55} rot={-Math.PI/4}/>
       <Label text="Energy" x={4.05} y={-0.2} rot={-Math.PI/2}/>
-      <Label text="Insturmentalness" x={3.75} y={-0.95} rot={Math.PI/4}/>
-      <Label text="Liveness" x={3} y={-1.3} rot={0}/>
+      <Label text="Instrumentalness" x={3.75} y={-0.95} rot={Math.PI/4}/>
+      <Label text="Liveness" x={3} y={-1.25} rot={0}/>
       <Label text="Loudness" x={2.25} y={-0.95} rot={-Math.PI/4}/>
       <Label text="Speechiness" x={1.95} y={-0.2} rot={Math.PI/2}/>
       <Label text="Valence" x={2.25} y={0.55}  rot={Math.PI/4}/>

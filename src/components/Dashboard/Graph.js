@@ -1,6 +1,7 @@
 import React from 'react';
 import { Plane, Text } from 'drei';
 import useSegment from 'util/hooks/useSegment';
+import Letters from './Letters';
 
 const Strip = ({ text, position, color, percentage }) => {
 
@@ -25,7 +26,7 @@ const Strip = ({ text, position, color, percentage }) => {
 }
 
 const Graph = () => {
-  const { pitches } = useSegment();
+  const { confidence, pitches } = useSegment();
   return (
     <React.Fragment>
       <Strip text="C" position={0} color={[0, 89, 66]} percentage={pitches[0]}/>
@@ -39,6 +40,12 @@ const Graph = () => {
       <Strip text="G#/Ab" position={8} color={[0, 89, 66]} percentage={pitches[8]}/>
       <Strip text="A" position={9} color={[0, 89, 66]} percentage={pitches[9]}/>
       <Strip text="A#/Bb" position={10} color={[0, 89, 66]} percentage={pitches[10]}/>
+      <Letters 
+        text='Segment'
+        position={{x:-3.4, y:-1.2}}
+        confidence={confidence} 
+        confidence_position={{x: -2.12, y: -0.25}}
+      />
     </React.Fragment>
   )
 }

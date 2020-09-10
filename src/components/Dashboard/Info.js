@@ -27,7 +27,6 @@ const Info = () => {
         <Text
           font="https://fonts.gstatic.com/s/merriweather/v21/u-4l0qyriQwlOrhSvowK_l5-eR7NWMf8.woff"
           fontSize={0.3}
-          factor={0.1}
           color='#111111'
           anchorX='left'
           anchorY='top'
