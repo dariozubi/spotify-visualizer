@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useStore } from 'util/hooks/useStore';
 
 function mapKey(key){
@@ -44,9 +44,10 @@ function mapMode(mode){
 export default function useSection(){
   const [confidence, setConfidence] = useState(0);
   const [timeSignature, setTimeSignature] = useState(4);
+  const [tempo, setTempo] = useState(4);
   const [mode, setMode] = useState('');
   const [key, setKey] = useState('');
-  const [start, setStart] = useState(0);
+  const start = useRef();
   const analysis = useStore(state => state.analysis);
   const progress = useStore(state => state.progress);
 
@@ -55,12 +56,13 @@ export default function useSection(){
       const data = analysis['sections'];
       for (let i=data.length-2; i>=0; --i){
         if (data[i].start < progress){
-          if (data[i+1].start !== start){
+          if (data[i+1].start !== start.current){
             setConfidence(data[i+1].confidence);
-            setStart(data[i+1].start);
+            start.current = data[i+1].start;
             setTimeSignature(data[i+1].time_signature);
             setKey(mapKey(data[i+1].key));
             setMode(mapMode(data[i+1].mode));
+            setTempo(data[i+1].tempo)
           }
           break
         }
@@ -68,5 +70,5 @@ export default function useSection(){
     }
   }, [analysis, progress])
 
-  return { confidence, timeSignature, mode, key };
+  return { confidence, timeSignature, mode, key, tempo };
 }
