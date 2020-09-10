@@ -4,6 +4,7 @@ import { OrbitControls } from 'drei';
 import Graph from './Graph';
 import Rhythms from './Rhythms';
 import Info from './Info';
+import Spider from './Spider';
 
 const style = {
   position: 'absolute',
@@ -25,6 +26,7 @@ const Dashboard = () => {
         <Info />
         <Rhythms/>
         <Graph/>
+        <Spider />
       </Canvas>
     </div>
   )
