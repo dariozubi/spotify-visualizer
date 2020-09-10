@@ -4,7 +4,7 @@ import { getCookie } from 'util/common';
 import { auth, getInfo, getAnalysis, getFeatures } from 'util/api';
 import { useStore } from 'util/hooks/useStore';
 
-const PROGRESS_UPDATE_DELAY = 200;
+const PROGRESS_UPDATE_DELAY = 100;
 const SERVER_CALL_DELAY = 5000;
 
 export default function useSpotify(){

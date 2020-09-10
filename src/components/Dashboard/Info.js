@@ -19,7 +19,7 @@ const Info = () => {
 
   return(
     <React.Fragment>
-      {track &&     
+      {track && !track.error &&     
       <Suspense fallback={null}>
         <Image 
           img={track.album.images[0].url}
