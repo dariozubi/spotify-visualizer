@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useStore } from 'util/hooks/useStore';
 import { Circle, Text, Line } from 'drei';
+import { font, color } from './theme';
 
 const Label = ({ text, x, y, rot }) => {
   return(
      <Text
-        font='https://fonts.gstatic.com/s/merriweather/v21/u-4l0qyriQwlOrhSvowK_l5-eR7NWMf8.woff'
+        font={font}
         fontSize={0.08}
-        color="#111111"
+        color={color.black}
         position-y={y}
         position-x={x}
         rotation-z={rot}
@@ -42,27 +43,32 @@ const Spider = () => {
 
   return (
     <React.Fragment>
-      <Circle args={[1, 8]} position-x={3} position-y={-0.4}>
-        <meshBasicMaterial attach="material" wireframe/>
-      </Circle>
-      <Circle args={[0.75, 8]} position-x={3} position-y={-0.4}>
-        <meshBasicMaterial attach="material" wireframe/>
-      </Circle>
-      <Circle args={[0.5, 8]} position-x={3} position-y={-0.4}>
-        <meshBasicMaterial attach="material" wireframe/>
-      </Circle>
-      <Circle args={[0.25, 8]} position-x={3} position-y={-0.4}>
-        <meshBasicMaterial attach="material" wireframe/>
-      </Circle>
-      <Line color="#005b96" position={[3, -0.4, 0]} points={points}  linewidth={1}/>
-      <Label text="Acousticness" x={3} y={0.65} rot={0}/>
-      <Label text="Danceability" x={3.75} y={0.35} rot={-Math.PI/4}/>
-      <Label text="Energy" x={4.05} y={-0.4} rot={-Math.PI/2}/>
-      <Label text="Instrumentalness" x={3.75} y={-1.15} rot={Math.PI/4}/>
-      <Label text="Liveness" x={3} y={-1.45} rot={0}/>
-      <Label text="Loudness" x={2.25} y={-1.15} rot={-Math.PI/4}/>
-      <Label text="Speechiness" x={1.95} y={-0.4} rot={Math.PI/2}/>
-      <Label text="Valence" x={2.25} y={0.35}  rot={Math.PI/4}/>
+      {
+        features &&
+        <group position-x={3} position-y={-0.6}>
+          <Circle args={[1, 8]}>
+            <meshBasicMaterial attach="material" wireframe color={color.gray}/>
+          </Circle>
+          <Circle args={[0.75, 8]}>
+            <meshBasicMaterial attach="material" wireframe color={color.gray}/>
+          </Circle>
+          <Circle args={[0.5, 8]}>
+            <meshBasicMaterial attach="material" wireframe color={color.gray}/>
+          </Circle>
+          <Circle args={[0.25, 8]}>
+            <meshBasicMaterial attach="material" wireframe color={color.gray}/>
+          </Circle>
+          <Line color={color.blue} position={[0, 0, 0.2]} points={points}  linewidth={1}/>
+          <Label text="Acousticness" x={0} y={1.05} rot={0}/>
+          <Label text="Danceability" x={0.75} y={0.75} rot={-Math.PI/4}/>
+          <Label text="Energy" x={1.05} y={0} rot={-Math.PI/2}/>
+          <Label text="Instrumentalness" x={0.75} y={-0.75} rot={Math.PI/4}/>
+          <Label text="Liveness" x={0} y={-1.05} rot={0}/>
+          <Label text="Loudness" x={-0.75} y={-0.75} rot={-Math.PI/4}/>
+          <Label text="Speechiness" x={-1.05} y={0} rot={Math.PI/2}/>
+          <Label text="Valence" x={-0.75} y={0.75}  rot={Math.PI/4}/>
+        </group>
+      }
     </React.Fragment>
   )
 }
