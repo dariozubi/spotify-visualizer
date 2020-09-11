@@ -10,11 +10,11 @@ export default function useRhythm( rhythm ){
   useEffect(() => {
     if (analysis){
       const data = analysis[rhythm];
-      for (let i=data.length-2; i>=0; --i){
+      for (let i=data.length-1; i>=0; --i){
         if (data[i].start < progress){
-          if (data[i+1].start !== start.current){
-            setConfidence(data[i+1].confidence);
-            start.current = data[i+1].start;
+          if (data[i].start !== start.current){
+            setConfidence(data[i].confidence);
+            start.current = data[i].start;
           }
           break
         }

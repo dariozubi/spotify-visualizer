@@ -15,16 +15,16 @@ export default function useSegment(){
   useEffect(() => {
     if (analysis){
       const data = analysis['segments'];
-      for (let i=data.length-2; i>=0; --i){
+      for (let i=data.length-1; i>=0; --i){
         if (data[i].start < progress){
-          if (data[i+1].start !== start.current){
-            setConfidence(data[i+1].confidence);
-            start.current = data[i+1].start;
-            setPitches(data[i+1].pitches)
-            setLoudnessStart(data[i+1].loudness_start)
-            setLoudnessMax(data[i+1].loudness_max)
-            setLoudnessMaxTime(data[i+1].loudness_max_time)
-            setTimbre(data[i+1].timbre)
+          if (data[i].start !== start.current){
+            setConfidence(data[i].confidence);
+            start.current = data[i].start;
+            setPitches(data[i].pitches)
+            setLoudnessStart(data[i].loudness_start)
+            setLoudnessMax(data[i].loudness_max)
+            setLoudnessMaxTime(data[i].loudness_max_time)
+            setTimbre(data[i].timbre)
           }
           break
         }

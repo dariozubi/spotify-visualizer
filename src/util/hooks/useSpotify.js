@@ -1,11 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useInterval } from './useInterval';
 import { getCookie } from 'util/common';
 import { auth, getInfo, getAnalysis, getFeatures } from 'util/api';
 import { useStore } from 'util/hooks/useStore';
 
 const PROGRESS_UPDATE_DELAY = 100;
-const SERVER_CALL_DELAY = 5000;
+const SERVER_CALL_DELAY = 7000;
+const MAX_SERVER_CALL_DELAY = 15000;
 
 export default function useSpotify(){
 
@@ -18,12 +19,13 @@ export default function useSpotify(){
   const setFeatures = useStore(state => state.setFeatures);
   const setProgress = useStore(state => state.setProgress);
 
-  const [progressDelay, setProgressDelay] = useState(PROGRESS_UPDATE_DELAY);
-  const [serverDelay, setServerDelay] = useState(SERVER_CALL_DELAY);
+  const serverDelay = useRef();
   const [lastUpdate, setLastUpdate] = useState(0);
   
   // Initialize values
 	useEffect(() => {
+    serverDelay.current = SERVER_CALL_DELAY;
+
     if (getCookie('DAZUMA_ACCESS_TOKEN')){
       const now = window.performance.now();
       getInfo()
@@ -57,9 +59,6 @@ export default function useSpotify(){
   useInterval(() => {
     const now = window.performance.now();
 
-    // Stop the progress update while making the call to the server
-    setProgressDelay(null);
-
     getInfo()
       .then(player => {
         if (isPlaying !== player.is_playing)
@@ -76,11 +75,11 @@ export default function useSpotify(){
           }
 
           // Update the delay if the next song is about to start
-          if (player.item.duration_ms - progress < SERVER_CALL_DELAY){
-            setServerDelay(player.item.duration_ms - progress);
-          } else if (serverDelay !== SERVER_CALL_DELAY){
-            setServerDelay(SERVER_CALL_DELAY);
-          }
+          if (player.item.duration_ms - progress < MAX_SERVER_CALL_DELAY)
+            serverDelay.current = Math.max(player.item.duration_ms - progress + 50, SERVER_CALL_DELAY);
+
+          else if (serverDelay.current !== SERVER_CALL_DELAY)
+            serverDelay.current = SERVER_CALL_DELAY;
 
           // Update info if track changed
           if (player.is_playing && track.name !== player.item.name){
@@ -97,16 +96,14 @@ export default function useSpotify(){
               });
           }
         }
-        
-        setProgressDelay(PROGRESS_UPDATE_DELAY);
       })
-  }, serverDelay)
+  }, serverDelay.current ? serverDelay.current : null)
 
   // Update progress constantly, except when calling the server
   useInterval(() => {
     const new_now = window.performance.now();
     setLastUpdate(new_now)
     if (isPlaying)
-      setProgress(progress + new_now - lastUpdate);
-  }, progressDelay)
+      setProgress(progress + new_now - lastUpdate <= track.duration_ms ? progress + new_now - lastUpdate : track.duration_ms);
+  }, PROGRESS_UPDATE_DELAY)
 }

@@ -47,22 +47,22 @@ export default function useSection(){
   const [tempo, setTempo] = useState(4);
   const [mode, setMode] = useState('');
   const [key, setKey] = useState('');
-  const start = useRef();
+  const startID = useRef();
   const analysis = useStore(state => state.analysis);
   const progress = useStore(state => state.progress);
 
   useEffect(() => {
     if (analysis){
       const data = analysis['sections'];
-      for (let i=data.length-2; i>=0; --i){
-        if (data[i].start < progress){
-          if (data[i+1].start !== start.current){
-            setConfidence(data[i+1].confidence);
-            start.current = data[i+1].start;
-            setTimeSignature(data[i+1].time_signature);
-            setKey(mapKey(data[i+1].key));
-            setMode(mapMode(data[i+1].mode));
-            setTempo(data[i+1].tempo)
+      for (let i=data.length-1; i>=0; --i){
+        if (progress > data[i].start){
+          if (data[i].start !== startID.current){
+            startID.current = data[i].start;
+            setConfidence(data[i].confidence);
+            setTimeSignature(data[i].time_signature);
+            setKey(mapKey(data[i].key));
+            setMode(mapMode(data[i].mode));
+            setTempo(data[i].tempo)
           }
           break
         }

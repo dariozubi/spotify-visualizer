@@ -59,14 +59,10 @@ export async function getAnalysis(track_id){
 
       const rhythms = ['bars', 'beats', 'sections', 'segments', 'tatums'];
       let analysis = res;
-      console.log(analysis);
       for (let rhythm of rhythms){
-        // TODO: I got an error trying to fetch analysis[rhythm]. Add some error handling here.
-        if (analysis[rhythm]){
-          for (let i=0; i<analysis[rhythm].length; i++){
-            analysis[rhythm][i].start *= 1000;
-            analysis[rhythm][i].duration *= 1000;
-          }
+        for (let i=0; i<analysis[rhythm].length; i++){
+          analysis[rhythm][i].start *= 1000;
+          analysis[rhythm][i].duration *= 1000;
         }
       }
       analysis.track.end_of_fade_in *= 1000;
