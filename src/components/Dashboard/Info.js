@@ -88,10 +88,10 @@ const Info = () => {
                 })
               }
               <Circle args={[0.05, 3]} rotation-z={Math.PI} position-x={-2.77 + 6.5*analysis.track.end_of_fade_in/track.duration_ms} position-y={1.18}>
-                <meshBasicMaterial attach="material" color={color.black}/>
+                <meshBasicMaterial attach="material" color={color.gray}/>
               </Circle>
               <Circle args={[0.05, 3]} rotation-z={0} position-x={-2.73 + 6.5*analysis.track.start_of_fade_out/track.duration_ms} position-y={1.18}>
-                <meshBasicMaterial attach="material" color={color.black}/>
+                <meshBasicMaterial attach="material" color={color.gray}/>
               </Circle>
             </React.Fragment>
           }

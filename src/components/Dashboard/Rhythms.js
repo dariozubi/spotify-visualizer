@@ -1,8 +1,6 @@
 import React from 'react';
 import Letters  from './Letters';
 import useRhythm from 'util/hooks/useRhythm';
-import { Text } from 'drei';
-import { font, color } from './theme';
 
 const Rhythms = () => {
   const beat = useRhythm('beats');

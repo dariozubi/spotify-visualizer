@@ -1,6 +1,6 @@
 import React from 'react';
 import { Canvas } from 'react-three-fiber';
-import { OrbitControls } from 'drei';
+import { OrbitControls, Stars } from 'drei';
 import Graph from './Graph';
 import Rhythms from './Rhythms';
 import Info from './Info';
@@ -22,11 +22,13 @@ const Dashboard = () => {
         camera={{ position: [0, 0, 130], fov:2}}
       >
         <OrbitControls/>
-        <ambientLight color="#ffffff" intensity={0.5} />
+        <ambientLight />
+        <Stars />
         <Info />
         <Rhythms/>
         <Graph/>
         <Spider />
+        
       </Canvas>
     </div>
   )

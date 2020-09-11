@@ -30,7 +30,7 @@ const color_hsl = [140, 82, 56];
 
 const Graph = () => {
   const { confidence, pitches } = useSegment();
-  const { confidence: section, timeSignature, mode, key, tempo } = useSection();
+  const { timeSignature, mode, key, tempo } = useSection();
   return (
     <React.Fragment>
       <group position-x={-0.2}>
