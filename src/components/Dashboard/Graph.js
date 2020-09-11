@@ -11,7 +11,7 @@ const Strip = ({ text, position, color_hsl, percentage }) => {
       <group position-y={position * -0.2}>
           <Text
             font={font}
-            color={color.black}
+            color={color.font}
             fontSize={0.15}
             position-y={0.45}
             position-x={-1}
@@ -33,7 +33,7 @@ const Graph = () => {
   const { timeSignature, mode, key, tempo } = useSection();
   return (
     <React.Fragment>
-      <group position-x={-0.2}>
+      <group position-x={-0.2} scale={[0.8,0.8,0.8]} position-y={-0.2}>
         <Strip text="C" position={0} color_hsl={color_hsl} percentage={pitches[0]}/>
         <Strip text="C#/Db" position={1} color_hsl={color_hsl} percentage={pitches[1]}/>
         <Strip text="D" position={2} color_hsl={color_hsl} percentage={pitches[2]}/>
@@ -47,7 +47,7 @@ const Graph = () => {
         <Strip text="A#/Bb" position={10} color_hsl={color_hsl} percentage={pitches[10]}/>
         <Text
           font={font}
-          color={color.black}
+          color={color.font}
           fontSize={0.25}
           position-y={0.7}
           position-x={0.4}
@@ -57,7 +57,7 @@ const Graph = () => {
 
         <Text
           font={font}
-          color={color.black}
+          color={color.font}
           fontSize={0.25}
           position-y={-1.8}
           position-x={0.4}
@@ -65,12 +65,14 @@ const Graph = () => {
           {Math.round(tempo) + 'BPM  ' + timeSignature + '/4'}
         </Text>
       </group>
+      <group scale={[0.8,0.8,0.8]}>
       <Letters 
         text='Segment'
-        position={{x:-3.1, y:-1.2}}
+        position={{x:-3.5, y:-1.6}}
         confidence={confidence} 
         confidence_position={{x: -2.12, y: -0.25}}
       />
+      </group>
     </React.Fragment>
   )
 }

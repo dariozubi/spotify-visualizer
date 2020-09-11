@@ -9,7 +9,7 @@ const Rhythms = () => {
   
   return(
     <React.Fragment>
-      <group position-y={-0.2} position-x={-3.2}>
+      <group position-y={-0.5} position-x={-2.8} scale={[0.8,0.8,0.8]}>
         <Letters 
           text='Bar'
           position={{x:0.1, y:0.5}}

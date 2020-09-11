@@ -1,6 +1,6 @@
 import React from 'react';
 import { Canvas } from 'react-three-fiber';
-import { OrbitControls, Stars } from 'drei';
+import { Stars } from 'drei';
 import Graph from './Graph';
 import Rhythms from './Rhythms';
 import Info from './Info';
@@ -11,7 +11,8 @@ const style = {
   top: 0,
   left: 0,
   right: 0,
-  bottom: 0
+  bottom: 0,
+  background: '#272730'
 }
 
 const Dashboard = () => {
@@ -19,16 +20,14 @@ const Dashboard = () => {
     <div style={style}>
       <Canvas 
         colorManagement
-        camera={{ position: [0, 0, 130], fov:2}}
+        camera={{ position: [0, 0, 3]}}
       >
-        <OrbitControls/>
         <ambientLight />
-        <Stars />
         <Info />
         <Rhythms/>
         <Graph/>
         <Spider />
-        
+        <Stars />
       </Canvas>
     </div>
   )

@@ -8,7 +8,7 @@ const Label = ({ text, x, y, rot }) => {
      <Text
         font={font}
         fontSize={0.08}
-        color={color.black}
+        color={color.font}
         position-y={y}
         position-x={x}
         rotation-z={rot}
@@ -45,7 +45,7 @@ const Spider = () => {
     <React.Fragment>
       {
         features &&
-        <group position-x={3} position-y={-0.6}>
+        <group position-x={2.8} position-y={-0.6} scale={[0.8,0.8,0.8]}>
           <Circle args={[1, 8]}>
             <meshBasicMaterial attach="material" wireframe color={color.gray}/>
           </Circle>
@@ -58,7 +58,7 @@ const Spider = () => {
           <Circle args={[0.25, 8]}>
             <meshBasicMaterial attach="material" wireframe color={color.gray}/>
           </Circle>
-          <Line color={color.blue} position={[0, 0, 0.2]} points={points}  linewidth={1}/>
+          <Line color={color.blue} position={[0, 0, 0.01]} points={points}  linewidth={1}/>
           <Label text="Energy" x={0} y={1.05} rot={0}/>
           <Label text="Danceability" x={0.75} y={0.75} rot={-Math.PI/4}/>
           <Label text="Acousticness" x={1.05} y={0} rot={-Math.PI/2}/>
