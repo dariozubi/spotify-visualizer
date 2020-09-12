@@ -1,6 +1,5 @@
 import React, { Suspense } from 'react';
 import { Text, MeshWobbleMaterial, useTextureLoader, Plane, Line, Circle } from "drei";
-import * as THREE from 'three';
 import { useStore } from 'util/hooks/useStore';
 import { toMinutes } from 'util/common';
 import { font, color } from './theme';

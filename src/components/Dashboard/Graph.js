@@ -45,6 +45,7 @@ const Graph = () => {
         <Strip text="G#/Ab" position={8} color_hsl={color_hsl} percentage={pitches[8]}/>
         <Strip text="A" position={9} color_hsl={color_hsl} percentage={pitches[9]}/>
         <Strip text="A#/Bb" position={10} color_hsl={color_hsl} percentage={pitches[10]}/>
+        <Strip text="B" position={11} color_hsl={color_hsl} percentage={pitches[11]}/>
         <Text
           font={font}
           color={color.font}
@@ -59,7 +60,7 @@ const Graph = () => {
           font={font}
           color={color.font}
           fontSize={0.25}
-          position-y={-1.8}
+          position-y={-2}
           position-x={0.4}
         >
           {Math.round(tempo) + 'BPM  ' + timeSignature + '/4'}
