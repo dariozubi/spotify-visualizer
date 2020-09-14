@@ -35,7 +35,7 @@ const Letters = ({ text, position, confidence, confidence_position }) => {
       </Text> 
       <group rotation-z={Math.PI/2-0.1} position-x={confidence_position.x} position-y={confidence_position.y}>
         {'confidence'.split('').map((a,k) => 
-          <Text color={(k+1)*0.1 < confidence ? color.font : color.gray } position-x={k*0.05} key={k}>{a}</Text>
+          <Text color={(k+1)*0.1 < confidence ? color.font : color.black } position-x={k*0.05} key={k}>{a}</Text>
         )}
       </group>
     </group>

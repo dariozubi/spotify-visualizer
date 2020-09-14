@@ -1,6 +1,11 @@
 {
   "name": "spotify-visualizer",
-  "version": "0.1.0",
+  "author": {
+    "name": "Darío Zubillaga",
+    "email": "dario@dazu.ma",
+    "url": "https://dazu.ma"
+  },
+  "version": "0.2.0",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
@@ -10,7 +15,6 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
-    "react-spring": "^8.0.27",
     "react-three-fiber": "^4.2.21",
     "three": "^0.112.1",
     "zustand": "^3.1.1"

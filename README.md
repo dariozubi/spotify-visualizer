@@ -1,10 +1,10 @@
 # spotify-visualizer
 
-> For the moment this is just a proof of concept.
+A small React app that shows you the track analysis and features of the song you are currently hearing in Spotify.
 
 ## Description
 
-Inspired by [kaleidosync](https://github.com/zachwinter/kaleidosync), this project shows a very simple audio reactive 3D scene. Based on [CRA](https://github.com/facebook/create-react-app) with some additions to the Node server for the Spotify API handling. The 3D part comes from the ThreeJS react renderer [react-three-fiber](https://github.com/react-spring/react-three-fiber).
+Inspired by [kaleidosync](https://github.com/zachwinter/kaleidosync), this project shows a very simple audio reactive 3D scene. Based on [CRA](https://github.com/facebook/create-react-app) with some additions to the Node server for the Spotify API handling. The 3D part comes from the ThreeJS react renderer [react-three-fiber](https://github.com/react-spring/react-three-fiber). State is managed with [zustand](https://github.com/react-spring/zustand).
 
 ## To test locally
 1. Create a new Spotify app in [Spotify's dashboard](https://developer.spotify.com/dashboard/).
