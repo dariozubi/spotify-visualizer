@@ -13,4 +13,14 @@ Inspired by [kaleidosync](https://github.com/zachwinter/kaleidosync), this proje
 4. Install dependencies running `npm install` on the root directory.
 5. Start the application `npm run start`.
 6. Go to [http://localhost:8000](http://localhost:8000) and log in to your Spotify account.
-7. Play a song and see the pebbles move.
+7. Play a song and watch the analysis.
+
+## What am I looking at?
+- The album cover moves faster if the song is popular.
+- The song name changes to red if it's labeled as NSFW.
+- The progress bar of the song also shows the sections.
+- The triangles below the progress bar show the end of the fade in and the beginning of the fade out.
+- The color bars show the pithces of each segment. More green is a higher value.
+- The key and mode on top of the bars and the bpm and time signature on the bottom change each section.
+- Each of the audio features in the spider graph go from 0 to 1.
+- All the rhythms move when they start (the actualization rate is of 150ms).
