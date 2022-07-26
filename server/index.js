@@ -8,7 +8,7 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use((req, res, next) => {
-  res.set('Access-Control-Allow-Origin', 'http://localhost:8000');
+  res.set('Access-Control-Allow-Origin', 'http://localhost:3000');
   res.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
 });
@@ -40,7 +40,7 @@ app.get('/refresh', (req, res) => {
     if (!error && response.statusCode === 200) {
       res.cookie(process.env.access_token, body.access_token);
       res.cookie(process.env.refresh_token, body.refresh_token);
-      res.redirect('http://localhost:8000/');
+      res.redirect('http://localhost:3000/');
     } else {
       res.send({ message: 'The end is near'});
     };
@@ -81,7 +81,7 @@ app.get('/callback', (req, res) => {
     if (!error && res.statusCode === 200) {
       res.cookie(process.env.access_token, body.access_token);
       res.cookie(process.env.refresh_token, body.refresh_token);
-      res.redirect('http://localhost:8000/');
+      res.redirect('http://localhost:3000/');
     } else {
       res.redirect('/#' + querystring.stringify({ error: 'invalid_token' }));
     }
